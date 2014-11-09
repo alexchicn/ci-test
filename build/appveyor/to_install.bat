@@ -1,2 +1,3 @@
-cmake /?
-cinst cmake
+echo ">>> install"
+cmake --version
+echo "<<< install"

@@ -13,19 +13,14 @@ install:
   - build/appveyor/to_install.bat
 
 before_build:
-  - mkdir out
-  - cd out
-  - mkdir msbuild
-  - cd msbuild
-  - cmake -G "Visual Studio 11" -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_CXX_COMPILER_ID=MSVC ../../build/cmake
-  - cd ../../
+  - build/appveyor/to_before_build.bat
 
 build:
   project: out/msbuild/demo.sln
   publish_nuget: true
 
 after_build:
-  - nuget pack ci-test.nuspec
+  - build/appveyor/to_after_build.bat
 
 artifacts:
   - path: '**\*.nupkg'
