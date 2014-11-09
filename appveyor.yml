@@ -9,12 +9,8 @@ nuget:
 configuration:
   - Release
 
-before_install:
-  - cmake /help
-  - build/appveyor/to_before_install.bat
-
 install:
-  - cinst cmake
+  - build/appveyor/to_install.bat
 
 before_build:
   - mkdir out
