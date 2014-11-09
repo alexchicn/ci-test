@@ -1,3 +1,5 @@
+#/usr/bin/env bash
+
 echo ">>> install"
 
 echo "-- TRAVIS_OS_NAME: $TRAVIS_OS_NAME"

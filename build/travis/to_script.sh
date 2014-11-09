@@ -1,3 +1,5 @@
+#/usr/bin/env bash
+
 mkdir out
 cd out
 mkdir make

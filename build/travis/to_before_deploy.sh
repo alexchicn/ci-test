@@ -1,3 +1,5 @@
+#/usr/bin/env bash
+
 echo ">>> befor deploy"
 
 if [ -n $TRAVIS_TAG ]; then 

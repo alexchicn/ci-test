@@ -1,3 +1,5 @@
+#/user/bin/env bash
+
 echo ">>> after success"
 
 if [ -z $TRAVIS_TAG ]; then
