@@ -1,0 +1,38 @@
+#language: cpp
+
+#compiler:
+#  - gcc
+
+os:
+  - windows
+  - linux
+  - osx
+
+env:
+  matrix:
+    - PLATFORM=linux DEPLOY_RELEASE=true
+    - PLATFORM=linux RUN_COVERALLS=true
+
+install:
+  - build/travis/to_install.sh
+
+script:
+  - echo "TRAVIS_TAG - $TRAVIS_TAG"
+  - build/travis/to_script.sh
+
+after_success:
+  - build/travis/to_after_success.sh
+
+before_deploy:
+  - build/travis/to_before_deploy.sh
+
+deploy:
+  provider: releases
+  api-key: $GITHUB_TOKEN
+  file: "out/demo/demo.$TRAVIS_TAG.$TRAVIS_OS_NAME.tar.gz"
+  skip_cleanup: true
+  on:
+    condition: $DEPLOY_RELEASE = true
+    tags: true
+    all_branches: true
+
