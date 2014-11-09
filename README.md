@@ -1,11 +1,11 @@
-tc-deploy-demo
-==============
+ci-test
+=======
 
-try to use the deployment function of travis-ci.org
+test some ci tools
 
-[![Build Status](https://travis-ci.org/alexchicn/tc-deploy-demo.svg)](https://travis-ci.org/alexchicn/tc-deploy-demo)
-[![Build status](https://ci.appveyor.com/api/projects/status/qh7as66e0ghux69y?svg=true)](https://ci.appveyor.com/project/alexchicn/tc-deploy-demo)
-[![Coverage Status](https://coveralls.io/repos/alexchicn/tc-deploy-demo/badge.png)](https://coveralls.io/r/alexchicn/tc-deploy-demo)
+[![Build Status](https://travis-ci.org/code4game/ci-test.svg)](https://travis-ci.org/code4game/ci-test)
+[![Build status](https://ci.appveyor.com/api/projects/status/3r642we2qxywe19s?svg=true)](https://ci.appveyor.com/project/alexchicn/ci-test)
+[![Coverage Status](https://coveralls.io/repos/code4game/ci-test/badge.png)](https://coveralls.io/r/code4game/ci-test)
 
 Log
 ===
