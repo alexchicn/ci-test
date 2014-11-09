@@ -1,0 +1,52 @@
+branches:
+  only:
+    - master
+
+nuget:
+  account_feed: true
+  project_feed: true
+
+configuration:
+  - Release
+
+install:
+  - cinst cmake
+
+before_build:
+  - mkdir out
+  - cd out
+  - mkdir msbuild
+  - cd msbuild
+  - cmake -G "Visual Studio 11" -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_CXX_COMPILER_ID=MSVC ../../build/cmake
+  - cd ../../
+
+build:
+  project: out/msbuild/demo.sln
+  publish_nuget: true
+
+after_build:
+  - nuget pack ci-test.nuspec
+
+artifacts:
+  - path: '**\*.nupkg'
+
+deploy:
+  - provider: NuGet
+    api_key:
+      secure: B01jYPuw/La7q7mGSHCiTteUfYzZdle01244QZFjCa+gPAePtzEKt7Wdm0jjpeNz
+    skip_symbols: true
+    artifact: /.*\.nupkg/
+    on:
+      configuration: Release
+      appveyor_repo_tag: true
+
+  - provider: NuGet
+    server: https://ci.appveyor.com/nuget/alexchicn-csflj3bn8kch
+    api_key:
+      secure: tzXr5wKUBQBiLGbyMl03+U44PNwnTZb1/sivSw52H1U=
+    skip_symbols: true
+    symbol_server: https://your.symbol.server/feed
+    artifact: /.*\.nupkg/
+    on:
+      configuration: Release
+
