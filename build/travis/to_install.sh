@@ -19,6 +19,8 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   sudo apt-get install qt5-default
   echo "-- install coveralls"
   sudo pip install cpp-coveralls
+  echo "-- install gcc"
+  sudo apt-get install gcc
 fi
 else
   echo "! no install for coveralls"
