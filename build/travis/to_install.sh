@@ -9,6 +9,8 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
 #  sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
 #  sudo apt-get update
 #  sudo apt-get install aptitude
+  if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+  if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
   echo "-- install cppcheck"
   sudo apt-get install cppcheck
   echo "-- install valgrind"
