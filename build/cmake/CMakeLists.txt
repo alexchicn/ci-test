@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 project(demo)
 
 if(USE_COVERALLS)
-  set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -Wall -fPIC -std=c++11")
+  set(CMAKE_C_FLAGS "-fprofile-arcs -ftest-coverage -Wall -fPIC")
   set(CMAKE_CXX_FLAGS "-fprofile-arcs -ftest-coverage -Wall -fPIC -std=c++11")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-arcs -lgcov")
   add_definitions(-DBUILD_COVERALLS)
