@@ -21,10 +21,10 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   sudo apt-get install cppcheck
   echo "-- install valgrind"
   sudo apt-get install valgrind
-  echo "-- install gles1"
-  sudo apt-get install libgles1-mesa-dev
-  echo "-- install qt5"
-  sudo apt-get install qt5-default
+  #echo "-- install gles1"
+  #sudo apt-get install libgles1-mesa-dev
+  #echo "-- install qt5"
+  #sudo apt-get install qt5-default
   echo "-- install coveralls"
   sudo pip install cpp-coveralls
 fi
@@ -35,14 +35,14 @@ fi
 # test some applications
 echo "-- cmake --version"
 cmake --version
-echo "-- ls qt"
-ls -l /usr/include/ | grep qt
-echo "-- ls gl"
-ls -l /usr/include/ | grep GL
-echo "-- moc -v"
-moc -v
-echo "-- uic -v"
-uic -v
+#echo "-- ls qt"
+#ls -l /usr/include/ | grep qt
+#echo "-- ls gl"
+#ls -l /usr/include/ | grep GL
+#echo "-- moc -v"
+#moc -v
+#echo "-- uic -v"
+#uic -v
 echo "-- valgrind --version"
 valgrind --version
 #echo "-- aptitude --version"
