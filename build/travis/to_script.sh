@@ -1,5 +1,8 @@
 #/usr/bin/env bash
 
+# run command with exit error-code
+set -e
+
 mkdir out
 cd out
 mkdir make
