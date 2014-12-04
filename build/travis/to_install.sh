@@ -4,6 +4,9 @@ echo ">>> install"
 
 echo "-- TRAVIS_OS_NAME: $TRAVIS_OS_NAME"
 
+# run command with exit error-code
+set -e
+
 if [ -z $TRAVIS_TAG ]; then
 if [ "$RUN_COVERALLS"x = "true"x ]; then
 #  sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
