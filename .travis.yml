@@ -1,17 +1,20 @@
-#language: cpp
+language: cpp
 
-#compiler:
-#  - gcc
+compiler:
+  - gcc
 
-os:
-  - windows
-  - linux
-  - osx
+#os:
+#  - windows
+#  - linux
+#  - osx
 
 env:
   matrix:
     - PLATFORM=linux DEPLOY_RELEASE=true
     - PLATFORM=linux RUN_COVERALLS=true
+
+before_install:
+  - build/travis/to_before_install.sh
 
 install:
   - build/travis/to_install.sh
