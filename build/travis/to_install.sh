@@ -17,19 +17,16 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   $CXX --version
   $CC --version
 #  sudo apt-get install aptitude
-  echo "-- install cppcheck"
-  sudo apt-get install cppcheck
-  echo "-- install valgrind"
-  sudo apt-get install valgrind
+  echo "-- install cppcheck valgrind coveralls"
+  sudo apt-get install cppcheck valgrind cpp-coveralls
   #echo "-- install gles1"
   #sudo apt-get install libgles1-mesa-dev
   #echo "-- install qt5"
   #sudo apt-get install qt5-default
-  echo "-- install coveralls"
-  sudo pip install cpp-coveralls
 fi
 else
   echo "! no install for coveralls"
+  exit
 fi
 
 # test some applications

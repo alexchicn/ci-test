@@ -16,6 +16,9 @@ elif [ "$DEPLOY_RELEASE"x = "true"x ]; then
   cmake ../../build/cmake
 fi
 
+$CXX --version
+$CC --version
+
 make
 
 cd ../..
