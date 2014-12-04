@@ -9,7 +9,7 @@ set -e
 
 if [ -z $TRAVIS_TAG ]; then
 if [ "$RUN_COVERALLS"x = "true"x ]; then
-  if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
+  if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
   sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   sudo apt-get update -qq
   if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
@@ -30,8 +30,8 @@ else
 fi
 
 # test some applications
-echo "-- cmake --version"
-cmake --version
+#echo "-- cmake --version"
+#cmake --version
 #echo "-- ls qt"
 #ls -l /usr/include/ | grep qt
 #echo "-- ls gl"
