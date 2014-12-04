@@ -11,6 +11,8 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
 #  sudo apt-get install aptitude
   if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  $CXX --version
+  $CC --version
   echo "-- install cppcheck"
   sudo apt-get install cppcheck
   echo "-- install valgrind"
@@ -21,8 +23,6 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   sudo apt-get install qt5-default
   echo "-- install coveralls"
   sudo pip install cpp-coveralls
-  echo "-- install gcc"
-  sudo apt-get install gcc
 fi
 else
   echo "! no install for coveralls"
