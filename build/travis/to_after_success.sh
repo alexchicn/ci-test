@@ -20,6 +20,8 @@ fi
 set -e
 
 if [ "$RUN_COVERALLS"x = "true"x ]; then
+  gcov --version
+  which gcov
   ls -l /usr/bin/gc*
   sudo ln -s /usr/bin/gcov-4.8 /usr/bin/gcov
   ./out/bin/demo
