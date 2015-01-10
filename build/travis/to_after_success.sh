@@ -23,7 +23,7 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   gcov --version
   which gcov
   ls -l /usr/bin/gc*
-  sudo ln -s /usr/bin/gcov-4.8 /usr/bin/gcov
+  sudo ln -s -f /usr/bin/gcov-4.8 /usr/bin/gcov
   ./out/bin/demo
   coveralls --exclude build/ --gcov-options '\-lp'
 else
