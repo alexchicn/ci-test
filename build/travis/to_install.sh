@@ -45,10 +45,10 @@ echo "-- ls qt"
 ls -l /usr/include/ | grep qt
 echo "-- ls gl"
 ls -l /usr/include/ | grep GL
-echo "-- moc -v"
-moc -v
-echo "-- uic -v"
-uic -v
+#echo "-- moc -v"
+#moc -v
+#echo "-- uic -v"
+#uic -v
 echo "-- valgrind --version"
 valgrind --version
 #echo "-- aptitude --version"
