@@ -27,27 +27,28 @@ if [ "$RUN_COVERALLS"x = "true"x ]; then
   sudo apt-get install qt5-default
   echo "-- install coveralls"
   sudo pip install cpp-coveralls
+
+  # test some applications
+  echo "-- cmake --version"
+  cmake --version
+  echo "-- ls qt"
+  ls -l /usr/include/ | grep qt
+  echo "-- ls gl"
+  ls -l /usr/include/ | grep GL
+  echo "-- moc -v"
+  moc -v
+#  echo "-- uic -v"
+#  uic -v
+  echo "-- valgrind --version"
+  valgrind --version
+#  echo "-- aptitude --version"
+#  aptitude --version
+#  echo "aptitude search gles"
+#  aptitude search GLES
 fi
 else
   echo "! no install for coveralls"
 fi
 
-# test some applications
-echo "-- cmake --version"
-cmake --version
-echo "-- ls qt"
-ls -l /usr/include/ | grep qt
-echo "-- ls gl"
-ls -l /usr/include/ | grep GL
-echo "-- moc -v"
-moc -v
-echo "-- uic -v"
-uic -v
-echo "-- valgrind --version"
-valgrind --version
-#echo "-- aptitude --version"
-#aptitude --version
-#echo "aptitude search gles"
-#aptitude search GLES
-
 echo "<<< install"
+
