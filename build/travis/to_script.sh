@@ -24,7 +24,6 @@ cd out
 mkdir make
 cd make
 
-if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
 if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
 
 if [ -z $TRAVIS_TAG ]; then
