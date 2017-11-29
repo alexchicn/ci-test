@@ -1,0 +1,3 @@
+@startuml
+Bot -> Alice : Hello
+@enduml
