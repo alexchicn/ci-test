@@ -1,4 +1,4 @@
-name: CI
+name: ubuntu
 
 on: [push]
 
@@ -17,3 +17,8 @@ jobs:
         cd make
         cmake -D USE_COVERALLS=TRUE ../../build/cmake
         make
+    - uses: actions/upload-artifact@v1.0.0
+    - name: Upload artifact
+      with:
+        name: test
+        path: out/
