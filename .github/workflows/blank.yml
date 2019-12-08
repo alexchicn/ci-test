@@ -11,7 +11,9 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build
       run: |
-        mkdir build
-        cd build
-        cmake -D USE_COVERALLS=TRUE ../build/cmake
+        mkdir out
+        cd out
+        mkdir make
+        cd make
+        cmake -D USE_COVERALLS=TRUE ../../build/cmake
         make
