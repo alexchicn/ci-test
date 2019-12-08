@@ -17,8 +17,8 @@ jobs:
         cd make
         cmake -D USE_COVERALLS=TRUE ../../build/cmake
         make
-    - uses: actions/upload-artifact@v1.0.0
     - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
       with:
         name: test
         path: out/
