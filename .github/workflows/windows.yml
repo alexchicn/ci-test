@@ -1,4 +1,4 @@
-name: CI-windows
+name: windows
 
 on: [push]
 
@@ -15,4 +15,9 @@ jobs:
         cd out
         mkdir make
         cd make
-        cmake -G "Visual Studio 16 2019" -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_CXX_COMPILER_ID=MSVC ../../build/cmake
+        cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../../build/cmake
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: test
+        path: out/
