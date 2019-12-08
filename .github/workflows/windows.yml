@@ -19,8 +19,7 @@ jobs:
         cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../../build/cmake
         
     - name: Build
-      run: |
-        cmake --build build
+      run: msbuild cmake.sln /t:Build /p:Configuration="Release" /p:Platform="x64"
         
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
