@@ -46,12 +46,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: srt32/git-actions@v0.0.3
-        with:
-          args: git submodule update --init --recursive
       - name: Build
         run: |
+          git submodule update --init --recursive
           mkdir build
           cd build
           cmake -DCMAKE_TOOLCHAIN_FILE=../externals/ios-cmake/toolchain/iOS.cmake -DIOS_PLATFORM=OS ../
