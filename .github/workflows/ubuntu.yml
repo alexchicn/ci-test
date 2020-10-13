@@ -15,7 +15,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake -D ../
+          cmake ../
           make
           cd ..
       - name: Upload artifact
