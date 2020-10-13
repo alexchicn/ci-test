@@ -28,7 +28,7 @@ jobs:
     name: 'build for windows'
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Generate
       run: |
         mkdir build
