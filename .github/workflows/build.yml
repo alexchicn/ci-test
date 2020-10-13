@@ -46,9 +46,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build
+      - name: Update submodules
         run: |
           git submodule update --init --recursive
+      - name: Build
+        run: |
           mkdir build
           cd build
           cmake -DCMAKE_TOOLCHAIN_FILE=../externals/ios-cmake/toolchain/iOS.cmake -DIOS_PLATFORM=OS ../
@@ -59,8 +61,8 @@ jobs:
         with:
           name: test.ios
           path: output/
-  windows:
-    name: 'build for windows'
+  windows_x64:
+    name: 'build for windows x64'
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -77,5 +79,25 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: test.windows
+        name: test.windows.x64
+        path: output/
+  windows_x32:
+    name: 'build for windows x32'
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Generate
+      run: |
+        mkdir build
+        cd build
+        cmake -G "Visual Studio 16 2019" -A "Win32" -D CMAKE_BUILD_TYPE=RELEASE ../
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Build
+      working-directory: build/
+      run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="Win32"
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: test.windows.x32
         path: output/
