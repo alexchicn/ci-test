@@ -4,29 +4,21 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v1
-      
     - name: Generate
       run: |
-        mkdir out
-        cd out
-        mkdir make
-        cd make
-        cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../../build/cmake
-        
+        mkdir build
+        cd build
+        cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
-      
     - name: Build
-      working-directory: out/make/
-      run: msbuild demo.sln /t:Build /p:Configuration="Release" /p:Platform="x64"
-        
+      working-directory: build/
+      run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="x64"
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: test
-        path: out/
+        path: output/

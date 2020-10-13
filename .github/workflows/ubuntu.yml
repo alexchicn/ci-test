@@ -4,21 +4,18 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
     - name: Build
       run: |
-        mkdir out
-        cd out
-        mkdir make
-        cd make
-        cmake -D USE_COVERALLS=TRUE ../../build/cmake
+        mkdir build
+        cd build
+        cmake -D ../
         make
+        cd ..
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
         name: test
-        path: out/
+        path: output/
