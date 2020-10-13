@@ -41,6 +41,23 @@ jobs:
         with:
           name: test.macos
           path: output/
+  ios:
+    name: 'build for ios'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake -DCMAKE_TOOLCHAIN_FILE=../externals/ios-cmake/toolchain/iOS.cmake -DIOS_PLATFORM=OS ../
+          make
+          cd ..
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: test.ios
+          path: output/
   windows:
     name: 'build for windows'
     runs-on: windows-latest
