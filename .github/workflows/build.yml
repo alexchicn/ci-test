@@ -19,6 +19,11 @@ jobs:
           cmake ../
           make
           cd ..
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: test.linux
+          path: output/
   windows:
     name: 'build for windows'
     runs-on: windows-latest
@@ -34,12 +39,8 @@ jobs:
     - name: Build
       working-directory: build/
       run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="x64"
-  upload:
-    name: 'upload artifact'
-    runs-on: ubuntu-latest
-    steps:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: test
+        name: test.windows
         path: output/
