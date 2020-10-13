@@ -8,6 +8,7 @@ on:
 
 jobs:
   linux:
+    name: 'build for linux'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +25,7 @@ jobs:
           name: test
           path: output/
   windows:
+    name: 'build for windows'
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v1
