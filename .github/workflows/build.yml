@@ -71,8 +71,8 @@ jobs:
         mkdir build >> $GITHUB_ENV
         cd build >> $GITHUB_ENV
         cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../>> $GITHUB_ENV
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
     - name: Build
       working-directory: build/
       run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="x64" >> $GITHUB_ENV
@@ -91,8 +91,8 @@ jobs:
         mkdir build >> $GITHUB_ENV
         cd build >> $GITHUB_ENV
         cmake -G "Visual Studio 16 2019" -A "Win32" -D CMAKE_BUILD_TYPE=RELEASE ../ >> $GITHUB_ENV
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.0.2
     - name: Build
       working-directory: build/
       run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="Win32" >> $GITHUB_ENV
