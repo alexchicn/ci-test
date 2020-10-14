@@ -16,7 +16,7 @@ jobs:
     - name: 'ready and build'
       run: |
         ls -l /usr/local/lib/android/sdk/ndk-bundle/build/cmake/
-        set ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk-bundle/
+        export ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk-bundle
         echo $ANDROID_NDK_HOME
         ls -l $ANDROID_NDK_HOME
         sudo apt-get install ninja-build
