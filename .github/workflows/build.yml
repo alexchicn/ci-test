@@ -13,21 +13,10 @@ jobs:
     steps:
     - name: 'checkout'
       uses: actions/checkout@v2
-    - name: 'ndk'
-      uses: ravinderjangra/android-ndk-toolchain-setup@0.2
-      with:
-        api: '21'
-        arch: 'x86'
-        install-location: 'toolchains'
-        force: true
     - name: 'ready and build'
       run: |
-        ls -l /usr/local/lib/
-        ls -l /usr/local/lib/android/
-        ls -l /usr/local/lib/android/sdk/
-        ls -l /usr/local/lib/android/sdk/ndk-bundle/
-        ls -l /usr/local/lib/android/sdk/ndk-bundle/build/
-        ls -l /usr/local/lib/android/sdk/ndk-bundle/build/cmake
+        ls -l /usr/local/lib/android/sdk/ndk-bundle/build/cmake/
+        set ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk-bundle/
         echo $ANDROID_NDK_HOME
         ls -l $ANDROID_NDK_HOME
         sudo apt-get install ninja-build
