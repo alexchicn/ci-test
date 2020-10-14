@@ -9,16 +9,11 @@ on:
 jobs:
   android:
     name: 'for android'
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
-    - name: 'ready'
-      run: |
-        sudo apt-get update
-        sudo apt-get install ninja
-        echo $ANDROID_NDK_HOME
-        ls -l $ANDROID_NDK_HOME
     - name: 'build'
       run: |
+        sudo apt-get install ninja
         mkdir build && cd build
         mkdir armeabi-v7a && cd armeabi-v7a
         cmake -G "Ninja" -DCMAKE_MAKE_PROGRAM=/usr/bin/ninja -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a -DANDROID_NDK=$ANDROID_NDK -DANDROID_NATIVE_API_LEVEL=19 -DANDROID_TOOLCHAIN=clang -DLIBGLTF_CHARACTOR_ENCODING=UTF8 ../../
