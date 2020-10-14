@@ -11,105 +11,92 @@ jobs:
     name: 'for android'
     runs-on: ubuntu-latest
     steps:
-    - name: 'build'
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'ready and build'
       run: |
+        echo $ANDROID_NDK_HOME
+        ls -l $ANDROID_NDK_HOME
         sudo apt-get install ninja
         mkdir build && cd build
         mkdir armeabi-v7a && cd armeabi-v7a
         cmake -G "Ninja" -DCMAKE_MAKE_PROGRAM=/usr/bin/ninja -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a -DANDROID_NDK=$ANDROID_NDK -DANDROID_NATIVE_API_LEVEL=19 -DANDROID_TOOLCHAIN=clang -DLIBGLTF_CHARACTOR_ENCODING=UTF8 ../../
         make
-        cd ..
+        cd ../
+        cd ../
   linux:
     name: 'build for linux'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        run: |
-          mkdir build
-          cd build
-          cmake ../
-          make
-          cd ..
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: test.linux
-          path: output/
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: Build
+      run: |
+        mkdir build
+        cd build
+        cmake ../
+        make
+        cd ../
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: test.linux
+        path: output/
   macos:
     name: 'build for macos'
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        run: |
-          mkdir build
-          cd build
-          cmake ../
-          make
-          cd ..
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: test.macos
-          path: output/
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'ready and build'
+      run: |
+        mkdir build
+        cd build
+        cmake ../
+        make
+        cd ../
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: test.macos
+        path: output/
   ios:
     name: 'build for ios'
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Update submodules
-        run: |
-          git submodule update --init --recursive
-      - name: Build
-        run: |
-          mkdir build
-          cd build
-          cmake -DCMAKE_TOOLCHAIN_FILE=../externals/ios-cmake/toolchain/iOS.cmake -DIOS_PLATFORM=OS ../
-          make
-          cd ..
-      - name: Upload artifact
-        uses: actions/upload-artifact@v1.0.0
-        with:
-          name: test.ios
-          path: output/
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'update submodules'
+      run: |
+        git submodule update --init
+    - name: 'ready and build'
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_TOOLCHAIN_FILE=../externals/ios-cmake/toolchain/iOS.cmake -DIOS_PLATFORM=OS ../
+        make
+        cd ../
+    - name: 'upload artifact'
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: test.ios
+        path: output/
   windows_x64:
     name: 'build for windows x64'
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Generate
-      run: |
-        mkdir build >> $GITHUB_ENV
-        cd build >> $GITHUB_ENV
-        cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../>> $GITHUB_ENV
-    - name: Add msbuild to PATH
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'setup msbuild'
       uses: microsoft/setup-msbuild@v1.0.2
-    - name: Build
-      working-directory: build/
-      run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="x64" >> $GITHUB_ENV
-    - name: Upload artifact
+    - name: 'ready and build'
+      run: |
+        mkdir build
+        cd build
+        cmake -G "Visual Studio 16 2019" -A "x64" -D CMAKE_BUILD_TYPE=RELEASE ../
+        msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="x64"
+    - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
         name: test.windows.x64
-        path: output/
-  windows_x32:
-    name: 'build for windows x32'
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Generate
-      run: |
-        mkdir build >> $GITHUB_ENV
-        cd build >> $GITHUB_ENV
-        cmake -G "Visual Studio 16 2019" -A "Win32" -D CMAKE_BUILD_TYPE=RELEASE ../ >> $GITHUB_ENV
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.0.2
-    - name: Build
-      working-directory: build/
-      run: msbuild test.sln /t:Build /p:Configuration="Release" /p:Platform="Win32" >> $GITHUB_ENV
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: test.windows.x32
         path: output/
