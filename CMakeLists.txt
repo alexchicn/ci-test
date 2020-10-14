@@ -8,6 +8,9 @@ set(CODE_FILE_LIST
 
 source_group("src" FILES ${CODE_FILE_LIST})
 
-set(EXECUTABLE_OUTPUT_PATH "${CMAKE_SOURCE_DIR}/output/bin")
+add_library(test STATIC ${CODE_FILE_LIST})
 
-add_executable(test ${CODE_FILE_LIST})
+set_target_properties(test PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/output/bin"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/output/lib"
+    )
