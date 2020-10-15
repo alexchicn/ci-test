@@ -1,0 +1,23 @@
+name: 'release'
+
+on:
+  push:
+    paths-ignore:
+    - '.github/**'
+    - 'docs/**'
+    - 'README.md'
+    - 'LICENSE'
+    - '.readthedocs.yml'
+    - '.git*'
+    tags:
+    - '*'
+
+jobs:
+  release:
+    name: 'release'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'release'
+      run: echo release
