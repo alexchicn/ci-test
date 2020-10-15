@@ -29,7 +29,7 @@ jobs:
         cd ../
     - name: 'package'
       run: |
-        zip -r 'test.v${{ github.ref }}.linux.zip' output/
+        zip -r 'test.linux.zip' output/
     - name: 'create release'
       id: create_release
       uses: actions/create-release@v1
@@ -51,6 +51,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: 'test.v${{ github.ref }}.linux.zip'
+        asset_path: 'test.linux.zip'
         asset_name: 'test.v${{ github.ref }}.linux.zip'
         asset_content_type: application/zip
