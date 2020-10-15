@@ -16,6 +16,8 @@ jobs:
     name: 'release'
     runs-on: ubuntu-latest
     steps:
+    - id: get_version
+      uses: battila7/get-version-action@v2
     - name: 'checkout'
       uses: actions/checkout@v2
     - name: 'build'
@@ -52,5 +54,5 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: 'output/test.linux.zip'
-        asset_name: 'test.v${{ github.event.release.tag_name }}.linux.zip'
+        asset_name: 'test.v${{ steps.get_version.outputs.version }}.linux.zip'
         asset_content_type: application/zip
