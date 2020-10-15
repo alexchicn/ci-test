@@ -12,9 +12,20 @@ on:
     - '*'
 
 jobs:
+  check:
+    name: 'check by cppcheck'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'install cppcheck'
+      run: 'sudo apt-get install cppcheck'
+    - name: 'checkout'
+      uses: actions/checkout@v2
+    - name: 'check'
+      run: 'cppcheck ./ --enable=warning,performance,portability --xml-version=2 --error-exitcode=1 -i external/ -i build/'
   linux:
     name: 'for linux'
     runs-on: ubuntu-latest
+    needs: check
     steps:
     - name: 'checkout'
       uses: actions/checkout@v2
@@ -57,7 +68,7 @@ jobs:
   release:
     name: 'release'
     runs-on: ubuntu-latest
-    needs: [ linux ]
+    needs: [ linux, macos ]
     steps:
     - name: 'get version by tag'
       id: get_version
