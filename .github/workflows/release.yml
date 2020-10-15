@@ -29,7 +29,7 @@ jobs:
         cd ../
     - name: 'package'
       run: |
-        zip -r 'test.v${{ github.ref }}.linux.zip'
+        zip -r 'test.v${{ github.ref }}.linux.zip' output/
     - name: 'create release'
       id: create_release
       uses: actions/create-release@v1
