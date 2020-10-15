@@ -61,12 +61,13 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         path: 'output/'
+    - name: 'print files'
+      run: 'ls -R'
     - name: 'package files'
-      run: |
-        'ls -R'
-        'cd test.linux && zip -r package.zip ./* && cd ../../'
-        'ls -R'
+      run: 'cd test.linux && zip -r package.zip ./* && cd ../../'
       working-directory: 'output'
+    - name: 'print files'
+      run: 'ls -R'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
       env:
