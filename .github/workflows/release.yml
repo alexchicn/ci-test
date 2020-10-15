@@ -63,9 +63,9 @@ jobs:
         path: 'output/'
     - name: 'package files'
       run: |
-        'ls -l'
+        'ls -R'
         'cd test.linux && zip -r package.zip ./* && cd ../../'
-        'ls -l'
+        'ls -R'
       working-directory: 'output'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
