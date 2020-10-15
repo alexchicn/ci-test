@@ -13,7 +13,7 @@ on:
 
 jobs:
   check:
-    name: 'check by cppcheck'
+    name: 'check'
     runs-on: ubuntu-latest
     steps:
     - name: 'install cppcheck'
@@ -47,7 +47,7 @@ jobs:
         name: test.linux
         path: output/
   macos:
-    name: 'build for macos'
+    name: 'for macos'
     runs-on: macos-latest
     needs: check
     steps:
@@ -87,10 +87,13 @@ jobs:
           '- B'
         draft: false
         prerelease: false
-    - name: 'download release asset linux'
+    - name: 'download release asset'
       uses: actions/download-artifact@v2
       with:
         path: 'output/'
+    - name: 'display structure of downloaded files'
+      run: 'ls -R'
+      working-directory: 'output/'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
       env:

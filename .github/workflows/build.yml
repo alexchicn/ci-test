@@ -9,19 +9,10 @@ on:
     - 'LICENSE'
     - '.readthedocs.yml'
     - '.git*'
-  pull_request:
-    branches: [ master ]
-    paths-ignore:
-    - '.github/release.yml'
-    - 'docs/**'
-    - 'README.md'
-    - 'LICENSE'
-    - '.readthedocs.yml'
-    - '.git*'
 
 jobs:
   check:
-    name: 'check by cppcheck'
+    name: 'check'
     runs-on: ubuntu-latest
     steps:
     - name: 'install cppcheck'
@@ -51,7 +42,7 @@ jobs:
         name: test.android
         path: output/
   linux:
-    name: 'build for linux'
+    name: 'for linux'
     runs-on: ubuntu-latest
     needs: check
     steps:
@@ -70,7 +61,7 @@ jobs:
         name: test.linux
         path: output/
   macos:
-    name: 'build for macos'
+    name: 'for macos'
     runs-on: macos-latest
     needs: check
     steps:
@@ -89,7 +80,7 @@ jobs:
         name: test.macos
         path: output/
   ios:
-    name: 'build for ios'
+    name: 'for ios'
     runs-on: macos-latest
     needs: check
     steps:
@@ -111,7 +102,7 @@ jobs:
         name: test.ios
         path: output/
   windows_x64:
-    name: 'build for windows x64'
+    name: 'for windows x64'
     runs-on: windows-latest
     needs: check
     steps:
