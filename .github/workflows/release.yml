@@ -35,7 +35,6 @@ jobs:
       with:
         name: test.linux
         path: output/
-        retention-days: 7
   macos:
     name: 'for macos'
     runs-on: macos-latest
@@ -54,7 +53,6 @@ jobs:
       with:
         name: test.macos
         path: output/
-        retention-days: 7
   release:
     name: 'release'
     runs-on: ubuntu-latest
@@ -83,9 +81,10 @@ jobs:
         path: 'output/'
     - name: 'package files'
       run: |
-        'cd test.linux && zip -r package.zip ./'
-        'cd test.macos && zip -r package.zip ./'
-      working-directory: 'output/'
+        'ls -l -R'
+        'cd test.linux && zip -r package.zip ./* && cd ../../'
+        'cd test.macos && zip -r package.zip ./* && cd ../../'
+      working-directory: 'output'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
       env:

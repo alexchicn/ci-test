@@ -50,7 +50,6 @@ jobs:
       with:
         name: test.android
         path: output/
-        retention-days: 7
   linux:
     name: 'build for linux'
     runs-on: ubuntu-latest
@@ -70,7 +69,6 @@ jobs:
       with:
         name: test.linux
         path: output/
-        retention-days: 7
   macos:
     name: 'build for macos'
     runs-on: macos-latest
@@ -90,7 +88,6 @@ jobs:
       with:
         name: test.macos
         path: output/
-        retention-days: 7
   ios:
     name: 'build for ios'
     runs-on: macos-latest
@@ -113,7 +110,6 @@ jobs:
       with:
         name: test.ios
         path: output/
-        retention-days: 7
   windows_x64:
     name: 'build for windows x64'
     runs-on: windows-latest
@@ -134,4 +130,3 @@ jobs:
       with:
         name: test.windows.x64
         path: output/
-        retention-days: 7
