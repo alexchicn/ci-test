@@ -81,15 +81,26 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         path: 'output/'
-    - name: 'display files'
-      run: 'ls -R'
+    - name: 'package files'
+      run: |
+        'cd test.linux && zip -r package.zip ./'
+        'cd test.macos && zip -r package.zip ./'
       working-directory: 'output/'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: 'output/test.linux.zip'
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: 'output/test.linux/package.zip'
         asset_name: 'test.v${{ steps.get_version.outputs.version }}.linux.zip'
+        asset_content_type: application/zip
+    - name: 'upload release asset macos'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: 'output/test.macos/package.zip'
+        asset_name: 'test.v${{ steps.get_version.outputs.version }}.macos.zip'
         asset_content_type: application/zip
