@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-    - '.github/**'
+    - '.github/release.yml'
     - 'docs/**'
     - 'README.md'
     - 'LICENSE'
@@ -13,7 +13,7 @@ on:
   pull_request:
     branches: [ master ]
     paths-ignore:
-    - '.github/**'
+    - '.github/release.yml'
     - 'docs/**'
     - 'README.md'
     - 'LICENSE'
