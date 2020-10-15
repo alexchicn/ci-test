@@ -16,11 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'install cppcheck'
-      run: 'sudo apt-get install cppcheck'
+      run: sudo apt-get install cppcheck
     - name: 'checkout'
       uses: actions/checkout@v2
     - name: 'check'
-      run: 'cppcheck ./ --enable=warning,performance,portability --xml-version=2 --error-exitcode=1 -i external/ -i build/'
+      run: cppcheck ./ --enable=warning,performance,portability --xml-version=2 --error-exitcode=1 -i external/ -i build/
   android:
     name: 'for android'
     runs-on: ubuntu-latest

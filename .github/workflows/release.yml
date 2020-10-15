@@ -17,11 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 'install cppcheck'
-      run: 'sudo apt-get install cppcheck'
+      run: sudo apt-get install cppcheck
     - name: 'checkout'
       uses: actions/checkout@v2
     - name: 'check'
-      run: 'cppcheck ./ --enable=warning,performance,portability --xml-version=2 --error-exitcode=1 -i external/ -i build/'
+      run: cppcheck ./ --enable=warning,performance,portability --xml-version=2 --error-exitcode=1 -i external/ -i build/
   linux:
     name: 'for linux'
     runs-on: ubuntu-latest
@@ -31,11 +31,11 @@ jobs:
       uses: actions/checkout@v2
     - name: 'build'
       run: |
-        'mkdir build'
-        'cd build'
-        'cmake ../'
-        'make'
-        'cd ../'
+        mkdir build
+        cd build
+        cmake ../
+        make
+        cd ../
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
@@ -50,11 +50,11 @@ jobs:
       uses: actions/checkout@v2
     - name: 'ready and build'
       run: |
-        'mkdir build'
-        'cd build'
-        'cmake ../'
-        'make'
-        'cd ../'
+        mkdir build
+        cd build
+        cmake ../
+        make
+        cd ../
     - name: 'upload artifact'
       uses: actions/upload-artifact@v1.0.0
       with:
@@ -88,8 +88,8 @@ jobs:
         path: 'output/'
     - name: 'package'
       run: |
-        'cd test.linux/ && zip -r package.zip ./* && cd ../'
-        'cd test.macos/ && zip -r package.zip ./* && cd ../'
+        cd test.linux/ && zip -r package.zip ./* && cd ../
+        cd test.macos/ && zip -r package.zip ./* && cd ../
       working-directory: 'output/'
     - name: 'upload release asset linux'
       uses: actions/upload-release-asset@v1
